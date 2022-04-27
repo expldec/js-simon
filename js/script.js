@@ -3,14 +3,24 @@
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
 
-const startBtn = document.getElementById("start-button");
-startBtn.addEventListener("click", function() {
-    // Aspetto 2 secondi e faccio diventare rosso il bottone cliccato
-    setTimeout(() => {
-        console.log(this);
-        this.classList.add("hidden"); 
+const startBtn = document.getElementById('start-button');
 
-    }, 2000);
+startBtn.addEventListener('click', function() {
+        const quizzableNumbers = generateNumbers(5,100);
+        const quizzableNumbersDOM = document.getElementById('numbers');
+        const resultDOM = document.getElementById('result');
+        const userPickedTimeout = parseInt(document.getElementById('difficulty').value);
+        quizzableNumbersDOM.classList.remove('hidden');
+        resultDOM.classList.add('hidden');
+        quizzableNumbersDOM.textContent = `Numeri: ${quizzableNumbers.join(', ')}`;
+    // Aspetto l'intervallo selezionato dall'utente e faccio partire il quiz.
+    setTimeout(() => {
+        quizzableNumbersDOM.classList.add('hidden'); 
+    }, userPickedTimeout);
+    setTimeout(() => {
+        resultDOM.textContent = quizNumbers(quizzableNumbers);
+        resultDOM.classList.remove('hidden');
+    }, userPickedTimeout+50);
     console.log('test');
 });
 
@@ -46,6 +56,6 @@ function quizNumbers(array) {
             correctAnswers.push(array[i])
         }
     }
-    //annuncia nel log i numeri esatti e la loro quantità
-    console.log(`hai indovinato ${correctAnswers.length} numeri: ${correctAnswers.join(', ')}`);
+    //restituisce una stringa con i numeri esatti e la loro quantità
+    return(`Hai indovinato ${correctAnswers.length} numeri: ${correctAnswers.join(', ')}`);
 }
