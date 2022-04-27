@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 10vh;
+    padding: 1rem 10rem;
+    text-align: end;
+    vertical-align: middle;
+}
+
+main {
+    height: 85vh;
+    padding: 2rem;
+    background-color: #bdbdbd;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+footer {
+    min-height: 5vh;
+}
+
